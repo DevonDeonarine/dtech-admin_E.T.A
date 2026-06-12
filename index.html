@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,13 +55,13 @@
         <div class="dashboard-header">
             <h2>Master Admin Dashboard</h2>
             <div>
-                <span id="syncStatus" class="sync-status sync-warning">⏳ Initializing...</span>
+                <span id="syncStatus" class="sync-status sync-warning">? Initializing...</span>
                 <select id="companyFilter" onchange="filterByCompany()">
                     <option value="">All Companies</option>
                 </select>
                 <button class="btn btn-primary" onclick="togglePasswords()">Toggle Passwords</button>
-                <button class="btn btn-info" onclick="syncToCloud()">⬆️ Upload to Cloud</button>
-                <button class="btn btn-success" onclick="syncFromCloud()">⬇️ Download from Cloud</button>
+                <button class="btn btn-info" onclick="syncToCloud()">?? Upload to Cloud</button>
+                <button class="btn btn-success" onclick="syncFromCloud()">?? Download from Cloud</button>
                 <button class="btn btn-danger" onclick="logout()">Logout</button>
             </div>
         </div>
@@ -81,8 +81,8 @@
                 <button class="btn btn-primary" onclick="showAddCompanyModal()">Add Company</button>
                 <button class="btn btn-primary" onclick="showAddMerchandiserModal()">Add Merchandiser</button>
                 <button class="btn btn-primary" onclick="showAddStoreModal()">Add Store</button>
-                <button class="btn btn-info" onclick="syncToCloud()">⬆️ Upload to Cloud</button>
-                <button class="btn btn-success" onclick="syncFromCloud()">⬇️ Download from Cloud</button>
+                <button class="btn btn-info" onclick="syncToCloud()">?? Upload to Cloud</button>
+                <button class="btn btn-success" onclick="syncFromCloud()">?? Download from Cloud</button>
             </div>
         </div>
 
@@ -136,12 +136,12 @@
         async function initSupabase() {
             if (SUPABASE_URL && SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== 'YOUR_ANON_KEY_HERE') {
                 supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                document.getElementById('syncStatus').innerHTML = '✅ Cloud Connected';
+                document.getElementById('syncStatus').innerHTML = '? Cloud Connected';
                 document.getElementById('syncStatus').className = 'sync-status sync-success';
                 // Auto-download from cloud on login
                 await syncFromCloud();
             } else {
-                document.getElementById('syncStatus').innerHTML = '⚠️ Cloud Not Configured';
+                document.getElementById('syncStatus').innerHTML = '?? Cloud Not Configured';
                 document.getElementById('syncStatus').className = 'sync-status sync-warning';
             }
         }
@@ -149,7 +149,7 @@
         async function syncToCloud() {
             if (!supabase) { alert('Supabase not configured. Click Sync to Cloud after configuring.'); return; }
             
-            document.getElementById('syncStatus').innerHTML = '⬆️ Uploading...';
+            document.getElementById('syncStatus').innerHTML = '?? Uploading...';
             document.getElementById('syncStatus').className = 'sync-status sync-syncing';
             
             try {
@@ -166,14 +166,14 @@
                     await supabase.from('stores').upsert(store);
                 }
                 
-                document.getElementById('syncStatus').innerHTML = '✅ Uploaded to Cloud';
+                document.getElementById('syncStatus').innerHTML = '? Uploaded to Cloud';
                 document.getElementById('syncStatus').className = 'sync-status sync-success';
                 addAuditLog('Cloud Sync', 'Data uploaded to cloud');
                 setTimeout(() => {
-                    document.getElementById('syncStatus').innerHTML = '✅ Cloud Connected';
+                    document.getElementById('syncStatus').innerHTML = '? Cloud Connected';
                 }, 3000);
             } catch (e) {
-                document.getElementById('syncStatus').innerHTML = '❌ Upload Failed';
+                document.getElementById('syncStatus').innerHTML = '? Upload Failed';
                 document.getElementById('syncStatus').className = 'sync-status sync-error';
                 console.error(e);
                 alert('Upload failed: ' + e.message);
@@ -183,7 +183,7 @@
         async function syncFromCloud() {
             if (!supabase) { alert('Supabase not configured'); return; }
             
-            document.getElementById('syncStatus').innerHTML = '⬇️ Downloading...';
+            document.getElementById('syncStatus').innerHTML = '?? Downloading...';
             document.getElementById('syncStatus').className = 'sync-status sync-syncing';
             
             try {
@@ -198,14 +198,14 @@
                 saveData();
                 refreshAll();
                 
-                document.getElementById('syncStatus').innerHTML = '✅ Downloaded from Cloud';
+                document.getElementById('syncStatus').innerHTML = '? Downloaded from Cloud';
                 document.getElementById('syncStatus').className = 'sync-status sync-success';
                 addAuditLog('Cloud Sync', 'Data downloaded from cloud');
                 setTimeout(() => {
-                    document.getElementById('syncStatus').innerHTML = '✅ Cloud Connected';
+                    document.getElementById('syncStatus').innerHTML = '? Cloud Connected';
                 }, 3000);
             } catch (e) {
-                document.getElementById('syncStatus').innerHTML = '❌ Download Failed';
+                document.getElementById('syncStatus').innerHTML = '? Download Failed';
                 document.getElementById('syncStatus').className = 'sync-status sync-error';
                 console.error(e);
                 // Don't alert on first run when tables might be empty
