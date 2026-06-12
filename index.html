@@ -5,177 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D-Tech Master Admin</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            width: 350px;
-            text-align: center;
-        }
-        .login-box h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .login-box p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .login-box button:hover {
-            background: #c82333;
-        }
-        .dashboard {
-            display: none;
-        }
-        .dashboard-header {
-            background: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .stat-card h3 {
-            font-size: 32px;
-            color: #333;
-        }
-        .companies-list, .merchandisers-list, .stores-list {
-            background: white;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .company-item, .merch-item, .store-item {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .btn-primary {
-            background: #007bff;
-            color: white;
-        }
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 400px;
-        }
-        .modal-content input, .modal-content select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .nav-tabs {
-            display: flex;
-            background: white;
-            padding: 0 20px;
-            gap: 10px;
-        }
-        .tab {
-            padding: 15px 20px;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-        .tab.active {
-            border-bottom: 3px solid #dc3545;
-            color: #dc3545;
-        }
-        .content-panel {
-            display: none;
-            padding: 20px;
-        }
-        .content-panel.active {
-            display: block;
-        }
-        .qr-code {
-            text-align: center;
-            padding: 20px;
-        }
-        .password-toggle {
-            cursor: pointer;
-            color: #007bff;
-            font-size: 12px;
-            margin-left: 10px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .login-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .login-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        .login-box h1 { color: #333; margin-bottom: 10px; }
+        .login-box p { color: #666; margin-bottom: 30px; }
+        .login-box input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        .login-box button { width: 100%; padding: 12px; background: #dc3545; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 20px; }
+        .login-box button:hover { background: #c82333; }
+        .dashboard { display: none; }
+        .dashboard-header { background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
+        .stat-card { background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .stat-card h3 { font-size: 32px; color: #333; }
+        .companies-list, .merchandisers-list, .stores-list { background: white; margin: 20px; padding: 20px; border-radius: 10px; }
+        .company-item, .merch-item, .store-item { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .btn { padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-warning { background: #ffc107; color: #333; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background: white; padding: 30px; border-radius: 10px; width: 400px; max-width: 90%; }
+        .modal-content input, .modal-content select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        .nav-tabs { display: flex; background: white; padding: 0 20px; gap: 10px; }
+        .tab { padding: 15px 20px; cursor: pointer; border: none; background: none; }
+        .tab.active { border-bottom: 3px solid #dc3545; color: #dc3545; }
+        .content-panel { display: none; padding: 20px; }
+        .content-panel.active { display: block; }
+        .qr-code { text-align: center; padding: 20px; }
+        .qr-code textarea { width: 100%; font-family: monospace; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -252,449 +112,60 @@
         </div>
     </div>
 
-    <!-- Add Company Modal -->
-    <div id="companyModal" class="modal">
-        <div class="modal-content">
-            <h3>Add Company</h3>
-            <input type="text" id="companyName" placeholder="Company Name">
-            <input type="text" id="companyCode" placeholder="Company Code">
-            <button class="btn btn-success" onclick="addCompany()">Add</button>
-            <button class="btn btn-danger" onclick="closeModal('companyModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Add Merchandiser Modal -->
-    <div id="merchModal" class="modal">
-        <div class="modal-content">
-            <h3>Add Merchandiser</h3>
-            <select id="merchCompanyId"></select>
-            <input type="text" id="merchName" placeholder="Full Name">
-            <input type="text" id="merchEmail" placeholder="Email">
-            <input type="text" id="merchPhone" placeholder="Phone">
-            <input type="text" id="merchCode" placeholder="Employee Code">
-            <input type="text" id="merchPassword" placeholder="Password" value="MERCH2024">
-            <button class="btn btn-success" onclick="addMerchandiser()">Add</button>
-            <button class="btn btn-danger" onclick="closeModal('merchModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Add Store Modal -->
-    <div id="storeModal" class="modal">
-        <div class="modal-content">
-            <h3>Add Store</h3>
-            <select id="storeCompanyId"></select>
-            <select id="storeAssignedTo"></select>
-            <input type="text" id="storeName" placeholder="Store Name">
-            <input type="text" id="storeLat" placeholder="Latitude">
-            <input type="text" id="storeLng" placeholder="Longitude">
-            <input type="text" id="storeRadius" placeholder="Radius (meters)" value="20">
-            <button class="btn btn-success" onclick="addStore()">Add</button>
-            <button class="btn btn-danger" onclick="closeModal('storeModal')">Cancel</button>
-        </div>
-    </div>
-
-    <!-- QR Modal -->
-    <div id="qrModal" class="modal">
-        <div class="modal-content">
-            <h3>QR Code for Merchandiser</h3>
-            <div id="qrCode" class="qr-code"></div>
-            <button class="btn btn-primary" onclick="copyQRData()">Copy JSON</button>
-            <button class="btn btn-danger" onclick="closeModal('qrModal')">Close</button>
-        </div>
-    </div>
+    <!-- Modals -->
+    <div id="companyModal" class="modal"><div class="modal-content"><h3>Add Company</h3><input type="text" id="companyName" placeholder="Company Name"><input type="text" id="companyCode" placeholder="Company Code"><button class="btn btn-success" onclick="addCompany()">Add</button><button class="btn btn-danger" onclick="closeModal('companyModal')">Cancel</button></div></div>
+    <div id="merchModal" class="modal"><div class="modal-content"><h3>Add Merchandiser</h3><select id="merchCompanyId"></select><input type="text" id="merchName" placeholder="Full Name"><input type="text" id="merchEmail" placeholder="Email"><input type="text" id="merchPhone" placeholder="Phone"><input type="text" id="merchCode" placeholder="Employee Code"><input type="text" id="merchPassword" placeholder="Password" value="MERCH2024"><button class="btn btn-success" onclick="addMerchandiser()">Add</button><button class="btn btn-danger" onclick="closeModal('merchModal')">Cancel</button></div></div>
+    <div id="storeModal" class="modal"><div class="modal-content"><h3>Add Store</h3><select id="storeCompanyId"></select><select id="storeAssignedTo"></select><input type="text" id="storeName" placeholder="Store Name"><input type="text" id="storeLat" placeholder="Latitude"><input type="text" id="storeLng" placeholder="Longitude"><input type="text" id="storeRadius" placeholder="Radius (meters)" value="20"><button class="btn btn-success" onclick="addStore()">Add</button><button class="btn btn-danger" onclick="closeModal('storeModal')">Cancel</button></div></div>
+    <div id="qrModal" class="modal"><div class="modal-content"><h3>QR Code / JSON</h3><div id="qrCode" class="qr-code"></div><button class="btn btn-primary" onclick="copyQRData()">Copy JSON</button><button class="btn btn-danger" onclick="closeModal('qrModal')">Close</button></div></div>
 
     <script>
-        let companies = [];
-        let merchandisers = [];
-        let stores = [];
-        let auditLogs = [];
-        let showPasswords = false;
-        let selectedCompanyFilter = '';
+        let companies = [], merchandisers = [], stores = [], auditLogs = [], showPasswords = false, selectedCompanyFilter = '';
 
-        function login() {
-            const password = document.getElementById('password').value;
-            if (password === 'MASTER2024') {
-                document.getElementById('loginContainer').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-                loadData();
-                addAuditLog('Login', 'Master Admin logged in');
-            } else {
-                alert('Invalid password');
-            }
-        }
-
-        function logout() {
-            document.getElementById('loginContainer').style.display = 'flex';
-            document.getElementById('dashboard').style.display = 'none';
-            addAuditLog('Logout', 'Master Admin logged out');
-        }
-
-        function loadData() {
-            const savedCompanies = localStorage.getItem('master_companies');
-            if (savedCompanies) companies = JSON.parse(savedCompanies);
-            
-            const savedMerchandisers = localStorage.getItem('master_merchandisers');
-            if (savedMerchandisers) merchandisers = JSON.parse(savedMerchandisers);
-            
-            const savedStores = localStorage.getItem('master_stores');
-            if (savedStores) stores = JSON.parse(savedStores);
-            
-            const savedLogs = localStorage.getItem('master_audit_logs');
-            if (savedLogs) auditLogs = JSON.parse(savedLogs);
-            
-            refreshAll();
-        }
-
-        function saveData() {
-            localStorage.setItem('master_companies', JSON.stringify(companies));
-            localStorage.setItem('master_merchandisers', JSON.stringify(merchandisers));
-            localStorage.setItem('master_stores', JSON.stringify(stores));
-            localStorage.setItem('master_audit_logs', JSON.stringify(auditLogs));
-        }
-
-        function addAuditLog(action, details) {
-            auditLogs.unshift({
-                id: Date.now(),
-                action: action,
-                user: 'Master Admin',
-                details: details,
-                timestamp: new Date().toISOString()
-            });
-            if (auditLogs.length > 100) auditLogs.pop();
-            saveData();
-            refreshAuditLogs();
-        }
-
-        function refreshAll() {
-            refreshStats();
-            refreshCompanyFilter();
-            refreshCompaniesList();
-            refreshMerchandisersList();
-            refreshStoresList();
-            refreshAuditLogs();
-        }
-
-        function refreshStats() {
-            const statsHtml = `
-                <div class="stat-card"><h3>${companies.length}</h3><p>Companies</p></div>
-                <div class="stat-card"><h3>${merchandisers.length}</h3><p>Merchandisers</p></div>
-                <div class="stat-card"><h3>${stores.length}</h3><p>Stores</p></div>
-            `;
-            document.getElementById('stats').innerHTML = statsHtml;
-        }
-
-        function refreshCompanyFilter() {
-            const filter = document.getElementById('companyFilter');
-            let html = '<option value="">All Companies</option>';
-            companies.forEach(c => {
-                html += `<option value="${c.id}">${c.name}</option>`;
-            });
-            filter.innerHTML = html;
-        }
-
-        function filterByCompany() {
-            selectedCompanyFilter = document.getElementById('companyFilter').value;
-            refreshMerchandisersList();
-            refreshStoresList();
-        }
-
-        function getFilteredMerchandisers() {
-            if (!selectedCompanyFilter) return merchandisers;
-            return merchandisers.filter(m => m.companyId === selectedCompanyFilter);
-        }
-
-        function getFilteredStores() {
-            let filtered = stores;
-            if (selectedCompanyFilter) {
-                filtered = filtered.filter(s => s.companyId === selectedCompanyFilter);
-            }
-            return filtered;
-        }
-
-        function refreshCompaniesList() {
-            let html = '';
-            companies.forEach(c => {
-                html += `
-                    <div class="company-item">
-                        <div><strong>${c.name}</strong><br><small>Code: ${c.code}</small></div>
-                        <button class="btn btn-danger" onclick="deleteCompany('${c.id}')">Delete</button>
-                    </div>
-                `;
-            });
-            if (html === '') html = '<p>No companies added yet</p>';
-            document.getElementById('companiesList').innerHTML = html;
-        }
-
-        function refreshMerchandisersList() {
-            let html = '';
-            const filtered = getFilteredMerchandisers();
-            filtered.forEach(m => {
-                const company = companies.find(c => c.id === m.companyId);
-                const companyName = company ? company.name : 'Unknown';
-                html += `
-                    <div class="merch-item">
-                        <div>
-                            <strong>${m.name}</strong><br>
-                            <small>${companyName} | Code: ${m.employeeCode}</small>
-                            ${showPasswords ? `<br><small style="color:green">Password: ${m.password}</small>` : ''}
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" onclick="showQR('${m.id}', '${m.name}')">QR</button>
-                            <button class="btn btn-danger" onclick="deleteMerchandiser('${m.id}')">Delete</button>
-                        </div>
-                    </div>
-                `;
-            });
-            if (html === '') html = '<p>No merchandisers found</p>';
-            document.getElementById('merchandisersList').innerHTML = html;
-        }
-
-        function refreshStoresList() {
-            let html = '';
-            const filtered = getFilteredStores();
-            filtered.forEach(s => {
-                const company = companies.find(c => c.id === s.companyId);
-                const companyName = company ? company.name : 'Unknown';
-                const merchandiser = merchandisers.find(m => m.id === s.assignedTo);
-                const assignedName = merchandiser ? merchandiser.name : 'Unassigned';
-                html += `
-                    <div class="store-item">
-                        <div>
-                            <strong>${s.name}</strong><br>
-                            <small>${companyName} | Assigned: ${assignedName}</small><br>
-                            <small>${s.latitude}, ${s.longitude} | ${s.radiusMeters}m</small>
-                        </div>
-                        <button class="btn btn-danger" onclick="deleteStore('${s.id}')">Delete</button>
-                    </div>
-                `;
-            });
-            if (html === '') html = '<p>No stores found</p>';
-            document.getElementById('storesList').innerHTML = html;
-        }
-
-        function refreshAuditLogs() {
-            let html = '';
-            auditLogs.slice(0, 50).forEach(log => {
-                const date = new Date(log.timestamp);
-                html += `
-                    <div class="company-item">
-                        <div>
-                            <strong>${log.action}</strong><br>
-                            <small>${log.details} - ${date.toLocaleString()}</small>
-                        </div>
-                    </div>
-                `;
-            });
-            if (html === '') html = '<p>No audit logs</p>';
-            document.getElementById('auditLogsList').innerHTML = html;
-        }
-
-        function showAddCompanyModal() {
-            document.getElementById('companyName').value = '';
-            document.getElementById('companyCode').value = '';
-            document.getElementById('companyModal').style.display = 'flex';
-        }
-
-        function addCompany() {
-            const name = document.getElementById('companyName').value;
-            const code = document.getElementById('companyCode').value;
-            if (name && code) {
-                const newCompany = {
-                    id: Date.now().toString(),
-                    name: name,
-                    code: code.toUpperCase(),
-                    createdAt: new Date().toISOString()
-                };
-                companies.push(newCompany);
-                saveData();
-                addAuditLog('Add Company', `Added company: ${name}`);
-                refreshAll();
-                closeModal('companyModal');
-            }
-        }
-
-        function deleteCompany(id) {
-            if (confirm('Delete this company? This will also delete all merchandisers and stores.')) {
-                const company = companies.find(c => c.id === id);
-                companies = companies.filter(c => c.id !== id);
-                merchandisers = merchandisers.filter(m => m.companyId !== id);
-                stores = stores.filter(s => s.companyId !== id);
-                saveData();
-                addAuditLog('Delete Company', `Deleted company: ${company.name}`);
-                refreshAll();
-            }
-        }
-
-        function showAddMerchandiserModal() {
-            const select = document.getElementById('merchCompanyId');
-            select.innerHTML = '';
-            companies.forEach(c => {
-                select.innerHTML += `<option value="${c.id}">${c.name}</option>`;
-            });
-            document.getElementById('merchName').value = '';
-            document.getElementById('merchEmail').value = '';
-            document.getElementById('merchPhone').value = '';
-            document.getElementById('merchCode').value = '';
-            document.getElementById('merchPassword').value = 'MERCH2024';
-            document.getElementById('merchModal').style.display = 'flex';
-        }
-
-        function addMerchandiser() {
-            const companyId = document.getElementById('merchCompanyId').value;
-            const name = document.getElementById('merchName').value;
-            const email = document.getElementById('merchEmail').value;
-            const phone = document.getElementById('merchPhone').value;
-            const code = document.getElementById('merchCode').value;
-            const password = document.getElementById('merchPassword').value;
-            
-            if (name && code && companyId) {
-                const newMerch = {
-                    id: Date.now().toString(),
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    companyId: companyId,
-                    employeeCode: code.toUpperCase(),
-                    password: password,
-                    createdAt: new Date().toISOString()
-                };
-                merchandisers.push(newMerch);
-                saveData();
-                addAuditLog('Add Merchandiser', `Added merchandiser: ${name}`);
-                refreshAll();
-                closeModal('merchModal');
-            }
-        }
-
-        function deleteMerchandiser(id) {
-            if (confirm('Delete this merchandiser?')) {
-                const merch = merchandisers.find(m => m.id === id);
-                merchandisers = merchandisers.filter(m => m.id !== id);
-                stores = stores.filter(s => s.assignedTo !== id);
-                saveData();
-                addAuditLog('Delete Merchandiser', `Deleted merchandiser: ${merch.name}`);
-                refreshAll();
-            }
-        }
-
-        function showAddStoreModal() {
-            const companySelect = document.getElementById('storeCompanyId');
-            companySelect.innerHTML = '';
-            companies.forEach(c => {
-                companySelect.innerHTML += `<option value="${c.id}">${c.name}</option>`;
-            });
-            refreshStoreAssignedTo();
-            document.getElementById('storeName').value = '';
-            document.getElementById('storeLat').value = '';
-            document.getElementById('storeLng').value = '';
-            document.getElementById('storeRadius').value = '20';
-            document.getElementById('storeModal').style.display = 'flex';
-        }
-
-        function refreshStoreAssignedTo() {
-            const companyId = document.getElementById('storeCompanyId').value;
-            const assignedSelect = document.getElementById('storeAssignedTo');
-            assignedSelect.innerHTML = '<option value="">Unassigned</option>';
-            merchandisers.filter(m => m.companyId === companyId).forEach(m => {
-                assignedSelect.innerHTML += `<option value="${m.id}">${m.name}</option>`;
-            });
-        }
-
-        function addStore() {
-            const companyId = document.getElementById('storeCompanyId').value;
-            const assignedTo = document.getElementById('storeAssignedTo').value || null;
-            const name = document.getElementById('storeName').value;
-            const lat = parseFloat(document.getElementById('storeLat').value);
-            const lng = parseFloat(document.getElementById('storeLng').value);
-            const radius = parseInt(document.getElementById('storeRadius').value);
-            
-            if (name && !isNaN(lat) && !isNaN(lng) && companyId) {
-                const newStore = {
-                    id: Date.now().toString(),
-                    name: name,
-                    latitude: lat,
-                    longitude: lng,
-                    radiusMeters: radius,
-                    companyId: companyId,
-                    assignedTo: assignedTo,
-                    createdAt: new Date().toISOString()
-                };
-                stores.push(newStore);
-                saveData();
-                addAuditLog('Add Store', `Added store: ${name}`);
-                refreshAll();
-                closeModal('storeModal');
-            }
-        }
-
-        function deleteStore(id) {
-            if (confirm('Delete this store?')) {
-                const store = stores.find(s => s.id === id);
-                stores = stores.filter(s => s.id !== id);
-                saveData();
-                addAuditLog('Delete Store', `Deleted store: ${store.name}`);
-                refreshAll();
-            }
-        }
-
-        function showQR(merchId, merchName) {
-            const storesForMerch = stores.filter(s => s.assignedTo === merchId);
-            if (storesForMerch.length === 0) {
-                alert('No stores assigned to this merchandiser');
-                return;
-            }
-            const qrData = JSON.stringify({
-                merchandiser_id: merchId,
-                merchandiser_name: merchName,
-                stores: storesForMerch
-            });
-            
-            // Simple text display instead of actual QR for now
-            document.getElementById('qrCode').innerHTML = `
-                <p><strong>${merchName}</strong></p>
-                <p>${storesForMerch.length} stores</p>
-                <textarea rows="5" cols="40" readonly>${qrData}</textarea>
-                <p style="font-size:12px; color:#666;">Scan this QR code with the merchandiser app</p>
-            `;
-            window.qrData = qrData;
-            document.getElementById('qrModal').style.display = 'flex';
-        }
-
-        function copyQRData() {
-            navigator.clipboard.writeText(window.qrData);
-            alert('Copied to clipboard!');
-        }
-
-        function clearAuditLogs() {
-            if (confirm('Clear all audit logs?')) {
-                auditLogs = [];
-                saveData();
-                refreshAuditLogs();
-                addAuditLog('Clear Logs', 'All audit logs cleared');
-            }
-        }
-
-        function togglePasswords() {
-            showPasswords = !showPasswords;
-            refreshMerchandisersList();
-        }
-
-        function showTab(index) {
-            document.querySelectorAll('.tab').forEach((tab, i) => {
-                if (i === index) tab.classList.add('active');
-                else tab.classList.remove('active');
-            });
-            document.querySelectorAll('.content-panel').forEach((panel, i) => {
-                if (i === index) panel.classList.add('active');
-                else panel.classList.remove('active');
-            });
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Add event listener for company filter refresh
+        function login() { if (document.getElementById('password').value === 'MASTER2024') { document.getElementById('loginContainer').style.display = 'none'; document.getElementById('dashboard').style.display = 'block'; loadData(); addAuditLog('Login', 'Master Admin logged in'); } else alert('Invalid password'); }
+        function logout() { document.getElementById('loginContainer').style.display = 'flex'; document.getElementById('dashboard').style.display = 'none'; addAuditLog('Logout', 'Master Admin logged out'); }
+        function loadData() { companies = JSON.parse(localStorage.getItem('master_companies') || '[]'); merchandisers = JSON.parse(localStorage.getItem('master_merchandisers') || '[]'); stores = JSON.parse(localStorage.getItem('master_stores') || '[]'); auditLogs = JSON.parse(localStorage.getItem('master_audit_logs') || '[]'); refreshAll(); }
+        function saveData() { localStorage.setItem('master_companies', JSON.stringify(companies)); localStorage.setItem('master_merchandisers', JSON.stringify(merchandisers)); localStorage.setItem('master_stores', JSON.stringify(stores)); localStorage.setItem('master_audit_logs', JSON.stringify(auditLogs)); }
+        function addAuditLog(action, details) { auditLogs.unshift({ id: Date.now(), action: action, user: 'Master Admin', details: details, timestamp: new Date().toISOString() }); if (auditLogs.length > 100) auditLogs.pop(); saveData(); refreshAuditLogs(); }
+        function refreshAll() { refreshStats(); refreshCompanyFilter(); refreshCompaniesList(); refreshMerchandisersList(); refreshStoresList(); refreshAuditLogs(); }
+        function refreshStats() { document.getElementById('stats').innerHTML = `<div class="stat-card"><h3>${companies.length}</h3><p>Companies</p></div><div class="stat-card"><h3>${merchandisers.length}</h3><p>Merchandisers</p></div><div class="stat-card"><h3>${stores.length}</h3><p>Stores</p></div>`; }
+        function refreshCompanyFilter() { let html = '<option value="">All Companies</option>'; companies.forEach(c => { html += `<option value="${c.id}">${c.name}</option>`; }); document.getElementById('companyFilter').innerHTML = html; }
+        function filterByCompany() { selectedCompanyFilter = document.getElementById('companyFilter').value; refreshMerchandisersList(); refreshStoresList(); }
+        function getFilteredMerchandisers() { return selectedCompanyFilter ? merchandisers.filter(m => m.companyId === selectedCompanyFilter) : merchandisers; }
+        function getFilteredStores() { let filtered = stores; if (selectedCompanyFilter) filtered = filtered.filter(s => s.companyId === selectedCompanyFilter); return filtered; }
+        
+        function refreshCompaniesList() { let html = ''; companies.forEach(c => { html += `<div class="company-item"><div><strong>${c.name}</strong><br><small>Code: ${c.code}</small></div><button class="btn btn-danger" onclick="deleteCompany('${c.id}')">Delete</button></div>`; }); document.getElementById('companiesList').innerHTML = html || '<p>No companies added yet</p>'; }
+        
+        function refreshMerchandisersList() { let html = ''; getFilteredMerchandisers().forEach(m => { const company = companies.find(c => c.id === m.companyId); const companyName = company ? company.name : 'Unknown'; html += `<div class="merch-item"><div><strong>${m.name}</strong><br><small>${companyName} | Code: ${m.employeeCode}</small>${showPasswords ? `<br><small style="color:green">Password: ${m.password}</small>` : ''}</div><div><button class="btn btn-primary" onclick="showQR('${m.id}', '${m.name}')">QR</button><button class="btn btn-danger" onclick="deleteMerchandiser('${m.id}')">Delete</button></div></div>`; }); document.getElementById('merchandisersList').innerHTML = html || '<p>No merchandisers found</p>'; }
+        
+        function refreshStoresList() { let html = ''; getFilteredStores().forEach(s => { const company = companies.find(c => c.id === s.companyId); const companyName = company ? company.name : 'Unknown'; const merchandiser = merchandisers.find(m => m.id === s.assignedTo); const assignedName = merchandiser ? merchandiser.name : 'Unassigned'; html += `<div class="store-item"><div><strong>${s.name}</strong><br><small>${companyName} | Assigned: ${assignedName}</small><br><small>${s.latitude}, ${s.longitude} | ${s.radiusMeters}m</small></div><div><button class="btn btn-warning" onclick="editStoreAssignment('${s.id}')">Edit</button><button class="btn btn-danger" onclick="deleteStore('${s.id}')">Delete</button></div></div>`; }); document.getElementById('storesList').innerHTML = html || '<p>No stores found</p>'; }
+        
+        function editStoreAssignment(storeId) { const store = stores.find(s => s.id === storeId); if (!store) return; const modalHtml = `<div id="editStoreModal" class="modal" style="display:flex"><div class="modal-content"><h3>Edit Store Assignment</h3><p><strong>Store:</strong> ${store.name}</p><select id="editAssignedTo"><option value="">Unassigned</option>${merchandisers.filter(m => m.companyId === store.companyId).map(m => `<option value="${m.id}" ${store.assignedTo === m.id ? 'selected' : ''}>${m.name}</option>`).join('')}</select><button class="btn btn-success" onclick="updateStoreAssignment('${storeId}')">Save</button><button class="btn btn-danger" onclick="closeEditModal()">Cancel</button></div></div>`; const existingModal = document.getElementById('editStoreModal'); if (existingModal) existingModal.remove(); document.body.insertAdjacentHTML('beforeend', modalHtml); }
+        
+        function updateStoreAssignment(storeId) { const newAssignedTo = document.getElementById('editAssignedTo').value || null; const store = stores.find(s => s.id === storeId); if (store) { store.assignedTo = newAssignedTo; saveData(); addAuditLog('Update Store Assignment', `Changed ${store.name} to ${newAssignedTo ? (merchandisers.find(m => m.id === newAssignedTo)?.name || 'Unknown') : 'Unassigned'}`); refreshStoresList(); closeEditModal(); alert('Store assignment updated!'); } }
+        
+        function closeEditModal() { const modal = document.getElementById('editStoreModal'); if (modal) modal.remove(); }
+        
+        function refreshAuditLogs() { let html = ''; auditLogs.slice(0, 50).forEach(log => { const date = new Date(log.timestamp); html += `<div class="company-item"><div><strong>${log.action}</strong><br><small>${log.details} - ${date.toLocaleString()}</small></div></div>`; }); document.getElementById('auditLogsList').innerHTML = html || '<p>No audit logs</p>'; }
+        
+        function showAddCompanyModal() { document.getElementById('companyName').value = ''; document.getElementById('companyCode').value = ''; document.getElementById('companyModal').style.display = 'flex'; }
+        function addCompany() { const name = document.getElementById('companyName').value, code = document.getElementById('companyCode').value; if (name && code) { companies.push({ id: Date.now().toString(), name: name, code: code.toUpperCase(), createdAt: new Date().toISOString() }); saveData(); addAuditLog('Add Company', `Added company: ${name}`); refreshAll(); closeModal('companyModal'); } }
+        function deleteCompany(id) { if (confirm('Delete this company? This will also delete all merchandisers and stores.')) { const company = companies.find(c => c.id === id); companies = companies.filter(c => c.id !== id); merchandisers = merchandisers.filter(m => m.companyId !== id); stores = stores.filter(s => s.companyId !== id); saveData(); addAuditLog('Delete Company', `Deleted company: ${company.name}`); refreshAll(); } }
+        
+        function showAddMerchandiserModal() { const select = document.getElementById('merchCompanyId'); select.innerHTML = ''; companies.forEach(c => { select.innerHTML += `<option value="${c.id}">${c.name}</option>`; }); document.getElementById('merchName').value = ''; document.getElementById('merchEmail').value = ''; document.getElementById('merchPhone').value = ''; document.getElementById('merchCode').value = ''; document.getElementById('merchPassword').value = 'MERCH2024'; document.getElementById('merchModal').style.display = 'flex'; }
+        function addMerchandiser() { const companyId = document.getElementById('merchCompanyId').value, name = document.getElementById('merchName').value, email = document.getElementById('merchEmail').value, phone = document.getElementById('merchPhone').value, code = document.getElementById('merchCode').value, password = document.getElementById('merchPassword').value; if (name && code && companyId) { merchandisers.push({ id: Date.now().toString(), name: name, email: email, phone: phone, companyId: companyId, employeeCode: code.toUpperCase(), password: password, createdAt: new Date().toISOString() }); saveData(); addAuditLog('Add Merchandiser', `Added merchandiser: ${name}`); refreshAll(); closeModal('merchModal'); } }
+        function deleteMerchandiser(id) { if (confirm('Delete this merchandiser?')) { const merch = merchandisers.find(m => m.id === id); merchandisers = merchandisers.filter(m => m.id !== id); stores = stores.filter(s => s.assignedTo !== id); saveData(); addAuditLog('Delete Merchandiser', `Deleted merchandiser: ${merch.name}`); refreshAll(); } }
+        
+        function showAddStoreModal() { const companySelect = document.getElementById('storeCompanyId'); companySelect.innerHTML = ''; companies.forEach(c => { companySelect.innerHTML += `<option value="${c.id}">${c.name}</option>`; }); refreshStoreAssignedTo(); document.getElementById('storeName').value = ''; document.getElementById('storeLat').value = ''; document.getElementById('storeLng').value = ''; document.getElementById('storeRadius').value = '20'; document.getElementById('storeModal').style.display = 'flex'; }
+        function refreshStoreAssignedTo() { const companyId = document.getElementById('storeCompanyId').value; const assignedSelect = document.getElementById('storeAssignedTo'); assignedSelect.innerHTML = '<option value="">Unassigned</option>'; merchandisers.filter(m => m.companyId === companyId).forEach(m => { assignedSelect.innerHTML += `<option value="${m.id}">${m.name}</option>`; }); }
+        function addStore() { const companyId = document.getElementById('storeCompanyId').value, assignedTo = document.getElementById('storeAssignedTo').value || null, name = document.getElementById('storeName').value, lat = parseFloat(document.getElementById('storeLat').value), lng = parseFloat(document.getElementById('storeLng').value), radius = parseInt(document.getElementById('storeRadius').value); if (name && !isNaN(lat) && !isNaN(lng) && companyId) { stores.push({ id: Date.now().toString(), name: name, latitude: lat, longitude: lng, radiusMeters: radius, companyId: companyId, assignedTo: assignedTo, createdAt: new Date().toISOString() }); saveData(); addAuditLog('Add Store', `Added store: ${name}`); refreshAll(); closeModal('storeModal'); } }
+        function deleteStore(id) { if (confirm('Delete this store?')) { const store = stores.find(s => s.id === id); stores = stores.filter(s => s.id !== id); saveData(); addAuditLog('Delete Store', `Deleted store: ${store.name}`); refreshAll(); } }
+        
+        function showQR(merchId, merchName) { const storesForMerch = stores.filter(s => s.assignedTo === merchId); if (storesForMerch.length === 0) { alert('No stores assigned to this merchandiser'); return; } const qrData = JSON.stringify({ merchandiser_id: merchId, merchandiser_name: merchName, stores: storesForMerch }); document.getElementById('qrCode').innerHTML = `<p><strong>${merchName}</strong></p><p>${storesForMerch.length} stores</p><textarea rows="8" cols="45" readonly>${qrData}</textarea><p style="font-size:12px; color:#666;">Copy this JSON and send to merchandiser</p>`; window.qrData = qrData; document.getElementById('qrModal').style.display = 'flex'; }
+        function copyQRData() { navigator.clipboard.writeText(window.qrData); alert('Copied to clipboard! Send to merchandiser via WhatsApp'); }
+        function clearAuditLogs() { if (confirm('Clear all audit logs?')) { auditLogs = []; saveData(); refreshAuditLogs(); addAuditLog('Clear Logs', 'All audit logs cleared'); } }
+        function togglePasswords() { showPasswords = !showPasswords; refreshMerchandisersList(); }
+        function showTab(index) { document.querySelectorAll('.tab').forEach((tab, i) => { if (i === index) tab.classList.add('active'); else tab.classList.remove('active'); }); document.querySelectorAll('.content-panel').forEach((panel, i) => { if (i === index) panel.classList.add('active'); else panel.classList.remove('active'); }); }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
         document.getElementById('storeCompanyId')?.addEventListener('change', refreshStoreAssignedTo);
     </script>
 </body>
